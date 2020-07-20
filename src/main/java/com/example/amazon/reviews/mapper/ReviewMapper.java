@@ -1,5 +1,6 @@
 package com.example.amazon.reviews.mapper;
 
+import com.example.amazon.reviews.model.Review;
 import com.example.amazon.reviews.model.dto.ReviewDto;
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -33,6 +34,21 @@ public class ReviewMapper {
         reviewDto.setSummary(line[SUMMARY_POSITION]);
         reviewDto.setText(line[TEXT_POSITION]);
         return reviewDto;
+    }
+
+    public Review getReviewFromReviewDto(ReviewDto reviewDto) {
+        Review review = new Review();
+        review.setId(reviewDto.getId());
+        review.setProductId(reviewDto.getProductId());
+        review.setUserId(reviewDto.getUserId());
+        review.setProfileName(reviewDto.getProfileName());
+        review.setHelpfulnessNominator(reviewDto.getHelpfulnessNominator());
+        review.setHelpfulnessDenominator(review.getHelpfulnessDenominator());
+        review.setScore(reviewDto.getScore());
+        review.setTime(reviewDto.getTime());
+        review.setSummary(reviewDto.getSummary());
+        review.setText(reviewDto.getText());
+        return review;
     }
 
     private LocalDateTime convertMillisToLocalDateTime(Long millis) {
