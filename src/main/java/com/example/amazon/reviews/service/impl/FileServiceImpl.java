@@ -16,7 +16,7 @@ public class FileServiceImpl implements FileService {
         try {
             return new ArrayList<>(Files.readAllLines(Paths.get(path)));
         } catch (IOException e) {
-            throw new RuntimeException("Can`t read from file with path " + path);
+            throw new RuntimeException("Can`t read from file with paths " + path);
         }
     }
 }
