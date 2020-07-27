@@ -1,6 +1,7 @@
 package com.example.amazon.reviews.controller;
 
 import com.example.amazon.reviews.mapper.UserMapper;
+import com.example.amazon.reviews.model.User;
 import com.example.amazon.reviews.model.dto.UserRequestDto;
 import com.example.amazon.reviews.model.dto.UserResponseDto;
 import com.example.amazon.reviews.security.AuthenticationService;
@@ -21,10 +22,10 @@ public class RegisterController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping()
+    @PostMapping
     public UserResponseDto register(@RequestBody UserRequestDto userRequestDto) {
-        return userMapper.getUserResponseDtoFromUser(authenticationService
-                .register(userRequestDto.getProfileName(), userRequestDto
-                        .getPassword()));
+        User user = authenticationService.register(userRequestDto.getProfileName(),
+                userRequestDto.getPassword());
+        return userMapper.getUserResponseDtoFromUser(user);
     }
 }
